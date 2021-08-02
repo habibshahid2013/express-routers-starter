@@ -17,8 +17,9 @@ app.use(bodyParser.json());
 
 //tell me express app
 //to use my booksRouter "mini app"
-
-app.use('/', booksRouter)
+//my mini app
+//lives inside the /book URL
+app.use('/book', booksRouter)
 
 // Start server listening on PORT
 app.listen(PORT, () => {

@@ -1,5 +1,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
+//add require for book.router
+const booksRouter = require('./routes/books.router')
 
 const app = express();
 const PORT = process.env.PORT || 5000;
@@ -13,20 +15,27 @@ app.use( express.static('server/public') );
 app.use(bodyParser.urlencoded({extended: true}));
 app.use(bodyParser.json());
 
+//tell me express app
+//to use my booksRouter "mini app"
+
+app.use('/', booksRouter)
+
 // Start server listening on PORT
 app.listen(PORT, () => {
     console.log(`Server running on port: ${PORT}...`);
 })
 
 // TODO - Move these routes to their own modules!
-app.get('/book', (req, res) => {
-    res.send(bookList);
-});
 
-app.post('/book', (req, res) => {
-    bookList.push(req.body);
-    res.sendStatus(200);
-});
+  //this got moved to book.router.js
+// app.get('/book', (req, res) => {
+//     res.send(bookList);
+// });
+
+// app.post('/book', (req, res) => {
+//     bookList.push(req.body);
+//     res.sendStatus(200);
+// });
 
 app.get('/movie', (req, res) => {
   res.send(movieList);
